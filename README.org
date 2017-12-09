@@ -8,6 +8,7 @@ A set of personal LaTeX packages.
 - [[physics/]] Collection of macros for physics typesetting (mostly QM)
 - [[ornaments/]] Helper for typesetting Hoefler Ornaments (distributed
   with macOS)
+- [[full-title/]] Template for nice title page using ornaments
 - [[todo/]] Macro for marking TODOs throughout the document, with optional
   generation of list of such TODOs.
 

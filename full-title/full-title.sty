@@ -1,0 +1,137 @@
+\ProvidesPackage{full-title}
+\RequirePackage{geometry}
+\RequirePackage{ornaments}
+\RequirePackage{tikz}
+\usetikzlibrary{external}
+\RequirePackage{environ}
+\RequirePackage{ifluatex}
+\ifluatex
+\RequirePackage{luacode}
+\fi
+
+\makeatletter
+
+\def\layoutwidth{\Gm@layoutwidth}
+\def\layoutheight{\Gm@layoutheight}
+\def\layouthoffset{\Gm@layouthoffset}
+\def\layoutvoffset{\Gm@layoutvoffset}
+\def\lmargin{\Gm@lmargin}
+\def\rmargin{\Gm@rmargin}
+\def\tmargin{\Gm@tmargin}
+\def\bmargin{\Gm@bmargin}
+
+\newcommand{\atitle}[1]{{\LARGE\textsc{\MakeLowercase{#1}}\\[1ex]}}
+\newcommand{\btitle}[1]{{\textcolor{accent}{\textit{#1}}\\}}
+
+\newcommand{\fsize}{32}
+\newcommand{\onode}[5]{\node[xshift=#3,yshift=#4] at (#1.south east)
+  {\fontsize{\fsize}{0}\textcolor{#5}{\Hornament{#2}}}}
+\newcommand{\oonode}[4]{\onode{NW}{#1}{(#2+0.5)*\fsize}{-(#3+0.5)*\fsize}{#4}}
+\newcommand{\honode}[3]{\oonode{F04#1}{#2}{#3}{black}}
+\newcommand{\ronode}[3]{\oonode{F06#1}{#2}{#3}{accent}}
+
+\NewEnviron{fulltitle}{
+  \begin{titlepage}
+    \tikzset{external/export next=false}
+    \begin{tikzpicture}[remember picture,overlay]
+      \path (current page.north west) ++(\layouthoffset,-\layoutvoffset)
+      ++(\lmargin,-\tmargin) coordinate(NW);
+      \path (NW) ++(\textwidth,0) coordinate(NE);
+      \path (NW) ++(0,-\textheight) coordinate(SW);
+      \path (NE) ++(0,-\textheight) coordinate(SE);
+
+      \path (current page.north west) ++(\layouthoffset,-\layoutvoffset)
+      ++(0.5\layoutwidth,-0.5\layoutheight) coordinate(Center);
+
+      \foreach \y in {1,3,...,13}{
+        \honode{7}{0}{\y};
+        \honode{5}{0}{\y+1};
+        \honode{8}{9}{\y};
+        \honode{6}{9}{\y+1};
+      }
+      \foreach \x in {0,2,...,8}{
+        \honode{5}{\x}{0};
+        \honode{8}{\x+1}{0};
+        \honode{7}{\x}{15};
+        \honode{6}{\x+1}{15};
+      }
+      \foreach \x in {1,3,...,7}{
+        \ronode{6}{\x}{1};
+        \ronode{5}{\x+1}{1};
+        \ronode{8}{\x}{14};
+        \ronode{7}{\x+1}{14};
+      }
+      \foreach \y in {2,4,...,13}{
+        \ronode{2}{1}{\y};
+        \ronode{3}{1}{\y+1};
+        \ronode{1}{8}{\y};
+        \ronode{4}{8}{\y+1};
+      }
+    \end{tikzpicture}
+    \begin{center}
+      \BODY
+    \end{center}
+  \end{titlepage}
+}
+
+\ifluatex
+\begin{luacode}
+function is_upper(word)
+   return word:sub(1,1) == word:upper():sub(1,1)
+end
+
+function print_segment(a, c)
+   if #a == 0 then
+      return
+   end
+   if c then
+      w = "atitle"
+   else
+      w = "btitle"
+   end
+   tex.print(table.concat({"{\\", w, "{",
+                       table.concat(a, " "), 
+                       "}}"}, ""))
+end
+
+function autotitle(title)
+   a = {}
+   c = false
+   for i in string.gmatch(title, "%S+") do
+      ic = is_upper(i)
+      if ic == c then
+         table.insert(a, i)
+      else
+         print_segment(a, c)
+         a = {i}
+         c = ic
+      end
+   end
+   print_segment(a, c)
+end
+\end{luacode}
+\fi
+
+\newcommand{\autotitle}[1]{%
+  \ifluatex
+  \directlua{autotitle("\@title")}
+  \else
+  {\atitle{#1}}
+  \fi
+}
+
+\newcommand{\fulltitledefault}{%
+  \begin{fulltitle}
+    {~}\\[15ex]
+    {\autotitle{\@title}}
+    \vskip 8ex
+
+    \textsc{\MakeLowercase{Stefanos Carlström}}
+
+    \vskip 30ex
+
+    {\footnotesize\textsc{\@roman{\the\year}}}
+  \end{fulltitle}
+}
+
+\makeatother

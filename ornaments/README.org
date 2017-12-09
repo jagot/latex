@@ -1,6 +1,8 @@
 # -*- org-latex-compiler: xelatex; -*-
 #+LATEX_COMPILER: xelatex
 #+TITLE: Hoefler Ornaments
+#+AUTHOR: Stefanos Carlström
+#+EMAIL: stefanos.carlstrom@gmail.com
 
 Convenience macro to easily create ornaments (only works with XeLaTeX
 and LuaLaTeX, since it depends on =fontspec=).

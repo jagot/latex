@@ -1,0 +1,40 @@
+#+TITLE: Full title
+#+AUTHOR: Stefanos Carlström
+#+EMAIL: stefanos.carlstrom@gmail.com
+
+A package for a nice full title page. Currently only works with fixed
+dimensions of the layout (set via =geometry.sty=). It requires
+Xe-/LuaLaTeX. Automatic splitting of title into blocks like seen below
+is only supported by LuaLaTeX.
+
+The package depends on [[../ornaments/][=ornaments.sty=]].
+
+Usage example:
+
+#+BEGIN_SRC latex
+  \documentclass[10pt]{article}
+  \usepackage[hmargin=51.5mm]{geometry}
+
+  \usepackage[rgb,svgnames,x11names]{xcolor}
+  \colorlet{accent}{FireBrick}
+
+  \usepackage{fontspec}
+  \setmainfont[
+  BoldFont={garamondpremrpro_smbd.otf}, 
+  ItalicFont={garamondpremrpro_it.otf},
+  BoldItalicFont={garamondpremrpro_smbdit.otf}
+  ]{garamondpremrpro.otf}
+
+  \title{Sub-Cycle Control of Strong-Field Processes on the Attosecond Timescale}
+  \author{Stefanos Carlström}
+
+  \usepackage{full-title}
+
+  \begin{document}
+  \fulltitledefault
+  \end{document}
+#+END_SRC
+
+
+
+[[file:./example.svg]]
