@@ -1,0 +1,167 @@
+\ProvidesPackage{maths}
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{centernot}
+
+% Linear algebra
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\uvec}[1]{\mathbf{e}_{#1}}
+\newcommand{\hvec}[1]{\hat{\mathbf{#1}}}
+\newcommand{\mat}[1]{\mathsfit{#1}}
+\newcommand{\ten}[1]{\mathbfsfit{#1}}
+\newcommand{\trans}{^\top}
+
+\newcommand{\pmat}[1]{
+  \begin{pmatrix}
+    #1
+  \end{pmatrix}
+}
+\newcommand{\bmat}[1]{
+  \begin{bmatrix}
+    #1
+  \end{bmatrix}
+}
+\newcommand{\Bmat}[1]{
+  \begin{Bmatrix}
+    #1
+  \end{Bmatrix}
+}
+
+\DeclareOption{hatop}{
+  \newcommand{\op}[1]{\hat{#1}}
+  \newcommand{\vecop}[1]{\hat{\mathbf{#1}}}
+  \newcommand{\optd}[1]{\op{\dot{#1}}}
+  \newcommand{\vecoptd}[1]{\hat{\dot{\mathbf{#1}}}}
+  \newcommand{\optdd}[1]{\op{\ddot{#1}}}
+  \newcommand{\vecoptdd}[1]{\hat{\ddot{\mathbf{#1}}}}
+}
+\DeclareOption{scrop}{
+  \renewcommand{\op}[1]{\mathscr{#1}}
+  \renewcommand{\vecop}[1]{\mathbfscr{#1}}
+}
+\ExecuteOptions{hatop}
+\ProcessOptions\relax
+\newcommand{\herm}{^\dagger}
+\newcommand{\hop}[1]{\op{#1}\herm}
+\newcommand{\firstop}[1]{\op{\mathcal{#1}}}
+
+% Similarity transforms, e.g. S⁻¹AS
+\newcommand{\simtrans}[2]{#1^{-1}#2#1}
+\newcommand{\simtransSop}[1]{\simtrans{\op{S}}{#1}}
+
+% Relations
+\newcommand{\LL}{\symbol{\string"2AA1}} % ⪡
+\newcommand{\GG}{\symbol{\string"2AA2}} % ⪢
+\newcommand{\LLL}{\symbol{\string"2AF7}} % ⫷
+\newcommand{\GGG}{\symbol{\string"2AF8}} % ⫸
+\newcommand{\nimplies}{\centernot\implies}
+
+% Operators
+\newcommand{\id}{\op{\mathbb{1}}}
+\let\eye\id
+\newcommand{\eyemat}{\mat{I}}
+\newcommand{\timeord}{\op{T}}
+\newcommand{\chron}[1]{\timeord\left\{#1\right\}}
+\newcommand{\achron}[1]{\bar{\timeord}\left\{#1\right\}}
+
+\newcommand{\Ordo}{\mathcal{O}}
+
+\newcommand{\Res}{\operatorname{Res}} % Residue
+\newcommand{\sinc}{\operatorname{sinc}}
+\newcommand{\Tr}{\operatorname{Tr}}
+
+\newcommand{\prop}[2]{\op{U}(#2,#1)}
+
+%% Differential operators
+\newcommand{\diff}[1]{\mathrm{d}#1\;}
+\newcommand\ddiff{\mathrm δ}
+\newcommand\Ddiff{\mathrm Δ}
+
+%%% Derivatives
+\let\underdot=\d
+\renewcommand{\d}[2]{\frac{\diff #1}{\diff #2}}
+\newcommand{\dd}[2]{\frac{\diff^2 #1}{\diff #2^2}}
+\newcommand{\pd}[2]{\frac{\partial{}#1}{\partial{}#2}}
+\newcommand{\pdd}[2]{\frac{\partial^2{}#1}{\partial{}#2^2}}
+\newcommand{\pddm}[3]{\frac{\partial^2{}#1}{\partial{}#2\partial{}#3}}
+\newcommand{\pdc}[3]{\left( \frac{\partial #1}{\partial #2}
+  \right)_{#3}} % for thermodynamic partial derivatives
+
+%%% Directed gradients
+\newcommand{\rgrad}{\overrightarrow{\nabla}}
+\newcommand{\lgrad}{\overleftarrow{\nabla}}
+
+\let\divsymb=\div % rename builtin command \div to \divsymb
+\renewcommand{\div}[1]{\nabla \cdot #1} % for divergence
+\newcommand{\curl}[1]{\nabla \times #1} % for curl
+
+%%% Shortcuts
+\newcommand{\laplace}{\nabla^2}
+\newcommand{\dalem}{\Box}
+
+%% Misc operators
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[2]{\left|\left|#1\right|\right|_{#2}}
+\newcommand{\sign}{\operatorname{sign}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\conj}[1]{#1^*}
+\newcommand{\Fourier}{\mathscr{F}}
+\newcommand{\Laplace}{\mathscr{L}}
+\newcommand{\Hankel}{\mathscr{H}}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+
+\DeclareMathOperator*{\SumInt}{%
+\mathchoice%
+  {\ooalign{$\displaystyle\sum$\cr\hidewidth$\displaystyle\int$\hidewidth\cr}}
+  {\ooalign{\raisebox{.14\height}{\scalebox{.7}{$\textstyle\sum$}}\cr\hidewidth$\textstyle\int$\hidewidth\cr}}
+  {\ooalign{\raisebox{.2\height}{\scalebox{.6}{$\scriptstyle\sum$}}\cr$\scriptstyle\int$\cr}}
+  {\ooalign{\raisebox{.2\height}{\scalebox{.6}{$\scriptstyle\sum$}}\cr$\scriptstyle\int$\cr}}
+}
+
+% Commutators
+\newcommand{\comm}[2]{\left[#1,#2\right]_-}
+\newcommand{\acomm}[2]{\left[#1,#2\right]_+}
+\newcommand{\bcomm}[2]{\left[#1,#2\right]_\mp}
+\newcommand{\poisson}[2]{\left\{#1,#2\right\}}
+
+% Groups
+\newcommand{\group}[1]{\mathfrak{#1}}
+\newcommand{\groupg}{\group{g}}
+\newcommand{\grouph}{\group{h}}
+
+% Constants
+\newcommand{\cpi}{\mathrm{π}}
+\newcommand{\ce}{\mathrm{e}}
+\renewcommand{\i}{\mathrm{i}}
+\newcommand{\im}{\mathrm{i}}
+\renewcommand{\j}{\mathrm{j}}
+
+% Number sets
+\newcommand{\numberset}[1]{\mathbb{#1}}
+\newcommand{\Natural}{\numberset{N}}
+\newcommand{\Integer}{\numberset{Z}}
+\newcommand{\Rational}{\numberset{Q}}
+\newcommand{\Real}{\numberset{R}}
+\newcommand{\Complex}{\numberset{C}}
+
+% Misc
+\newcommand{\unit}[1]{\;\textrm{#1}}
+
+\newcommand{\inter}[1]{\left\lceil #1 \right\rfloor}
+
+% http://tex.stackexchange.com/questions/17550/plus-minus-symbol-with-parenthesis-around-the-minus-sign
+
+\newcommand\varpm{\mathbin{\vcenter{\hbox{%
+  \oalign{\hfil$\scriptstyle+$\hfil\cr
+          \noalign{\kern-.3ex}
+          $\scriptscriptstyle({-})$\cr}%
+}}}}
+\newcommand\varmp{\mathbin{\vcenter{\hbox{%
+  \oalign{\hfil$\scriptstyle-$\hfil\cr
+          \noalign{\kern-.3ex}
+          $\scriptscriptstyle({+})$\cr}%
+}}}}
+
+\newcommand{\evalat}[2]{\left.{#1}\right|_{#2}}

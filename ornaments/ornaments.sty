@@ -1,0 +1,15 @@
+\ProvidesPackage{ornaments}
+
+\RequirePackage{fontspec}
+
+\newfontfamily\ornaments{Hoefler Text Ornaments}
+\newcommand{\Hornament}[1]{\ornaments\symbol{\string"#1}}
+
+\newcommand{\lefthand}{}
+\newcommand{\righthand}{}
+\newcommand{\uphand}{}
+
+\newcommand{\fleuron}[1]{
+  \def\fleuron_code{E1C#1}
+  \symbol{\string"\fleuron_code}
+}

@@ -1,0 +1,69 @@
+%%% 
+
+\ProvidesPackage{physics}
+
+\RequirePackage{maths}
+
+\newcommand{\conf}[1]{\mathrm{#1}}
+
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\matrixel}[3]{\langle #1|#2|#3\rangle}
+\newcommand{\redmatrixel}[3]{\langle #1\|#2\|#3\rangle}
+\newcommand{\braket}[2]{\langle #1|#2\rangle}
+\newcommand{\ketbra}[3][]{|#2\rangle#1\langle #3|}
+\newcommand{\expect}[1]{\langle #1\rangle}
+\newcommand{\cc}{\textrm{c.c.}}
+
+\newcommand{\ham}{\op{h}}
+\newcommand{\Ham}{\op{H}}
+\newcommand{\HamI}{\Ham_{\textrm{I}}}
+\newcommand{\kinop}{\op{T}}
+\newcommand{\potop}{\op{V}}
+
+\newcommand{\Space}[1]{\mathfrak{#1}}
+\newcommand{\hilbert}{\Space{H}}
+\newcommand{\fock}{\Space{F}}
+\newcommand{\nullket}{\ket{\emptyset}}
+\newcommand{\vacuum}{\ket{0}}
+
+% Quantities
+\newcommand{\rmsub}[2]{#1_{\textrm{#2}}}
+\newcommand{\Up}{\rmsub{U}{p}}
+\newcommand{\Ip}{\rmsub{I}{p}}
+\newcommand{\muB}{\rmsub{\mu}{B}}
+\newcommand{\kB}{\rmsub{k}{B}}
+\newcommand{\Wk}{\rmsub{W}{k}}
+\newcommand{\me}{\rmsub{m}{e}}
+
+% Angular momenta
+\newcommand{\threej}[2]
+{
+  \left(
+    \begin{array}{rrr}
+          #1\\#2
+    \end{array}
+  \right)
+}
+\newcommand{\sixj}[2]
+{
+  \left\{
+    \begin{array}{rrr}
+      #1\\#2
+    \end{array}
+  \right\}
+}
+\newcommand{\ninej}[3]
+{
+  \left\{
+    \begin{array}{rrr}
+      #1\\#2\\#3
+    \end{array}
+  \right\}
+}
+
+
+
+\newcommand{\IIIj}[2]{\pmat{#1\\#2}}
+\newcommand{\VIj}[2]{\Bmat{#1\\#2}}
+\newcommand{\IXj}[3]{\Bmat{#1\\#2\\#3}}
