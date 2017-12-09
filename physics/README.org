@@ -1,0 +1,76 @@
+#+TITLE: physics.sty
+#+AUTHOR: Stefanos Carlström
+#+EMAIL: stefanos.carlstrom@gmail.com
+
+Various helper macros for physics notation, mostly from quantum
+mechanics.
+
+#+PROPERTY: header-args:latex :export both :results raw :fit yes :noweb yes :headers '("\\usepackage{physics}")
+
+#+BEGIN_SRC latex :exports both :file images/configuration.svg
+  \[\conf{1s^22s^22p^6\;^1S_0}\]
+#+END_SRC
+
+#+RESULTS:
+[[file:images/configuration.svg]]
+
+#+BEGIN_SRC latex :exports both :file images/vectors.svg
+  \[\ket{\psi},\qquad
+    \bra{\phi},\qquad
+    \braket{\phi}{\psi}\]
+
+  \[d_{ij} = \matrixel{i}{d}{j}\]
+  \[\redmatrixel{\ell}{\mathbf{C}^{k}}{\ell'}\]
+
+  \[1 = \sum_i\ketbra{i}{i}\]
+
+  \[\expect{\Ham}=E\]
+
+  \[\ket{\psi} = \sum_i \ket{i}\matrixel{i}{\HamI}{0} + \cc \]
+#+END_SRC
+
+#+RESULTS:
+[[file:images/vectors.svg]]
+
+
+#+BEGIN_SRC latex :exports both :file images/hamiltonians.svg
+\[\Ham = \bigoplus_i \ham_i\]
+\[\HamI(t) = \vecop{E}(t)\cdot\vecop{d}\]
+\[\Ham_0 = \kinop + \potop\]
+#+END_SRC
+
+#+RESULTS:
+[[file:images/hamiltonians.svg]]
+
+
+#+BEGIN_SRC latex :exports both :file images/spaces.svg
+\[\ket{\psi}\in\hilbert\]
+\[\hilbert^1,\hilbert^2,\hilbert^3...\in\fock\]
+\[\vacuum\in\nullket\]
+#+END_SRC
+
+#+RESULTS:
+[[file:images/spaces.svg]]
+
+Misc quantities that require a Roman subscript:
+
+#+BEGIN_SRC latex :exports both :file images/roman-subs.svg
+\[\Up, \Ip, \muB, \kB, \Wk, \me\]
+#+END_SRC
+
+#+RESULTS:
+[[file:images/roman-subs.svg]]
+
+Angular momenta:
+
+#+BEGIN_SRC latex :exports both :file images/angular-momenta.svg
+\[\matrixel{\conf{2p}}{\op{z}}{\conf{1s}}
+\propto\IIIj{1&1&0}{0&0&0}=-\sqrt{\frac{1}{3}}\]
+
+\[\VIj{j_1&j_2&j_3}{j_4&j_5&j_6}\]
+
+\[\IXj{j_1&j_2&j_3}{j_4&j_5&j_6}{j_7&j_8&j_9}\]
+#+END_SRC
+
+#+RESULTS:
+[[file:images/angular-momenta.svg]]
