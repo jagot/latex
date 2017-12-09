@@ -11,13 +11,19 @@ First, we include the necessary packages.
   \usepackage[dvipsnames]{xcolor}
 #+END_SRC
 
+We then use the macro =\Hornament{<hexcode>}= to create different patterns.
 #+name: ornaments_png
-#+header: :exports results :file ornaments.png
+#+header: :exports both :file ornaments.png
 #+header: :imagemagick yes :iminoptions -density 600 :imoutoptions -geometry 400 
 #+header: :fit yes :noweb yes :headers '("\\usepackage{ornaments}" "\\usepackage[dvipsnames]{xcolor}")
-#+BEGIN_SRC latex :exports results :file ornaments.png
+#+BEGIN_SRC latex :exports both :file ornaments.png
   \fontsize{30}{0}
   \Hornament{F066}\Hornament{F067}\Hornament{F068}\Hornament{F069}\\
   \textcolor{BrickRed}{\Hornament{F061}\Hornament{F061}\Hornament{F062}\Hornament{F062}}
 #+END_SRC
 [[file:./ornaments.png]]
+
+
+The hexcode can be found from macOS Font Book by hovering over the
+desired glyph:
+[[file:./glyphs.png]]
