@@ -1,0 +1,22 @@
+#+TITLE: LaTeX packages
+#+AUTHOR: Stefanos Carlström
+#+EMAIL: stefanos.carlstrom@gmail.com
+
+A set of personal LaTeX packages.
+
+- [[maths/]] Collection of macros for maths typesetting
+- [[physics/]] Collection of macros for physics typesetting (mostly QM)
+- [[ornaments/]] Helper for typesetting Hoefler Ornaments (distributed
+  with macOS)
+- [[todo/]] Macro for marking TODOs throughout the document, with optional
+  generation of list of such TODOs.
+
+* Installation
+  To use any or all of the above packages, copy or symlink the folders
+  as subfolders of =$TEXMFHOME/tex/latex=, where the value of
+  =$TEXMFHOME= can be found by
+  #+BEGIN_SRC sh
+  kpsewhich -var-value TEXMFHOME
+  #+END_SRC
+  On Linux, this is usually =~/texmf= and on macOS =~/Library/texmf=.
+
